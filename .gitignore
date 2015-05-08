@@ -1,0 +1,6 @@
+extension/js/*.js
+node_modules
+.idea
+build
+npm-debug.log
+typings
