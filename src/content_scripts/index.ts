@@ -14,13 +14,13 @@ if (validity()) {
 }
 
 function tracking() {
-  let global: any = (<any> window);
-  let performance: Performance = global.performance;
-  let navigator: any = global.navigator;
-  let location: Location = global.location;
+  const global: any = (<any> window);
+  const performance: Performance = global.performance;
+  const navigator: any = global.navigator;
+  const location: Location = global.location;
 
   // `chrome.loadTimes()`
-  let loadTimes: ChromeLoadTimes = global.chrome.loadTimes();
+  const loadTimes: ChromeLoadTimes = global.chrome.loadTimes();
 
   // if firstPainting not yet, retry to next event loop
   if (!loadTimes.firstPaintTime) {
@@ -30,10 +30,10 @@ function tracking() {
 
   // `performance.navigation`
   // FIXME <any> cast because "Property 'secureConnectionStart' is missing in type 'PerformanceTiming'."
-  let navTiming: NavigationTiming = <any> performance.timing;
+  const navTiming: NavigationTiming = <any> performance.timing;
 
   // context
-  let webPageCtx: WebPageContext = {
+  const webPageCtx: WebPageContext = {
     navigationType : performance.navigation.type,
     redirectCount  : performance.navigation.redirectCount,
     resourceCount  : performance.getEntries().length,
@@ -45,7 +45,7 @@ function tracking() {
   };
 
   // pass to tracking background
-  let trackingBundle: TrackingBundle = {
+  const trackingBundle: TrackingBundle = {
     context          : webPageCtx,
     navigationTiming : navTiming,
     chromeLoadTimes  : loadTimes

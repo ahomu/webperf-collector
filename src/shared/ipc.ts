@@ -11,7 +11,7 @@ export interface IPCMessage {
 export default class IPC<T> {
 
   static broadcast(type: number|string, body: any, tabId?: number) {
-    let message: IPCMessage = {
+    const message: IPCMessage = {
       type: type,
       body: body
     };
@@ -29,7 +29,7 @@ export default class IPC<T> {
 
   constructor(eventType: number|string, eventSubject: chrome.events.Event) {
 
-    let subject$: Rx.Subject<IPCMessage> = (new Rx.Subject<IPCMessage>());
+    const subject$: Rx.Subject<IPCMessage> = (new Rx.Subject<IPCMessage>());
 
     eventSubject.addListener(
       (message: IPCMessage, sender: chrome.runtime.MessageSender, responder: Function) => {

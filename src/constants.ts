@@ -12,11 +12,6 @@ export enum OBSERVABLE_TYPE {
   WEB_PAGE_CONTEXT  = 3
 }
 
-export const PARSE_CONFIG = {
-  APPLICATION_ID : '',
-  JAVASCRIPT_KEY : ''
-};
-
 export const INDEXEDDB_CONFIG = {
   DB_NAME    : 'webperf-collector',
   DB_VERSION : 5

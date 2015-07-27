@@ -14,28 +14,12 @@ function duration(from: number, to: number) {
   return from - to;
 }
 
-let tracking: IPC<TrackingBundle> =
+const tracking: IPC<TrackingBundle> =
   new IPC<TrackingBundle>(OBSERVABLE_TYPE.TRACKING, chrome.runtime.onMessage);
 
 tracking.observable$.subscribe(function(data: TrackingBundle) {
 
-  let n: NavigationTiming = data.navigationTiming;
-  let l: ChromeLoadTimes = data.chromeLoadTimes;
-  let c: WebPageContext = data.context;
-
-  let tracker: Tracker = new Tracker(c);
-
-  tracker.saveParse<NavigationTiming>('NavigationTiming', n).subscribe(function() {
-    //console.info('success', arguments);
-  }, function() {
-    //console.error('error', arguments);
-  });
-  tracker.saveParse<ChromeLoadTimes>('ChromeLoadTimes', l).subscribe(function() {
-    //console.info('success', arguments);
-  }, function() {
-    //console.error('error', arguments);
-  });
-  tracker.saveLocal(data).subscribe(function() {
+  Tracker.saveLocal(data).subscribe(function() {
     //console.info('success', arguments);
   }, function() {
     //console.error('error', arguments);

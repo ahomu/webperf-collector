@@ -4,7 +4,7 @@ let location: any = global.location;
 
 function validity(): boolean {
 
-  let result: boolean = [
+  const result: boolean = [
     () => document.contentType === 'text/html',
     () => location.protocol.match(/^https?:$/),
     () => location.hostname !== 'localhost',

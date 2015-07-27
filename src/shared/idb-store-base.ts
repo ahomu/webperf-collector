@@ -11,7 +11,7 @@ export default class IDBStoreBase<T> {
   }
 
   put(dataObj: T): Rx.Subject<string> {
-    let subject: Rx.Subject<string> = new Rx.Subject<string>();
+    const subject: Rx.Subject<string> = new Rx.Subject<string>();
     this.store.put(dataObj, (id)=> {
       subject.onNext(id);
       subject.onCompleted();
