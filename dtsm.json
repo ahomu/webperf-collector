@@ -9,13 +9,18 @@
   "bundle": "typings/bundle.d.ts",
   "dependencies": {
     "chrome/chrome.d.ts": {
-      "ref": "6c2589a6335713cc5b88701d607a2770f1c53b63"
+      "ref": "f6c8ca47193fb67947944a3170912672ac3e908e"
     },
-    "rx/rx.d.ts": {
-      "ref": "6c2589a6335713cc5b88701d607a2770f1c53b63"
+    "rx/rx-lite.d.ts": {
+      "ref": "f6c8ca47193fb67947944a3170912672ac3e908e"
     },
     "parse/parse.d.ts": {
-      "ref": "6c2589a6335713cc5b88701d607a2770f1c53b63"
+      "ref": "f6c8ca47193fb67947944a3170912672ac3e908e"
+    }
+  },
+  "link": {
+    "npm": {
+      "include": true
     }
   }
 }

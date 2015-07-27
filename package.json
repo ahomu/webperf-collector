@@ -7,21 +7,21 @@
     "idb-wrapper": "^1.5.0",
     "object-assign": "^2.0.0",
     "parse": "^1.4.2",
-    "rx": "^2.5.2"
+    "rx-lite": "^2.5.2"
   },
   "devDependencies": {
     "browserify": "^9.0.8",
     "convert-source-map": "^1.1.0",
     "dtsm": "^0.9.2",
     "glob": "^5.0.5",
-    "typescript": "^1.5.0-alpha",
+    "typescript": "^1.5.3",
     "watch": "^0.16.0",
     "watchify": "^3.2.1"
   },
   "license": "MIT",
   "scripts": {
     "build": "npm run tsc && npm run bundle:background && npm run bundle:browser_action && npm run bundle:content_scripts",
-    "tsc": "tsc src/**/*.ts src/*.ts --outDir build --module commonjs --sourceMap && node ./source-map-inliner.js",
+    "tsc": "tsc src/**/*.ts src/*.ts --outDir build --module commonjs --sourceMap --noImplicitAny && node ./source-map-inliner.js",
     "bundle:background": "browserify build/background/index.js -o extension/js/background.js",
     "bundle:browser_action": "browserify build/browser_action/index.js -o extension/js/browser_action.js",
     "bundle:content_scripts": "browserify build/content_scripts/index.js -o extension/js/content_scripts.js",
