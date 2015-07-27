@@ -47,7 +47,7 @@
  *******************************************************************************
  ******************************************************************************/
 
-function RUMSpeedIndex(win) {
+function RUMSpeedIndex(win: any) {
   win = win || (<any> window);
   var doc = win.document;
 
@@ -55,7 +55,7 @@ function RUMSpeedIndex(win) {
    Support Routines
    ****************************************************************************/
   // Get the rect for the visible portion of the provided DOM element
-  var GetElementViewportRect = function(el) {
+  var GetElementViewportRect = function(el: Element) {
     var intersect: any = false;
     if (el.getBoundingClientRect) {
       var elRect = el.getBoundingClientRect();
@@ -75,7 +75,7 @@ function RUMSpeedIndex(win) {
   };
 
   // Check a given element to see if it is visible
-  var CheckElement = function(el, url) {
+  var CheckElement = function(el: Element, url: string) {
     if (url) {
       var rect = GetElementViewportRect(el);
       if (rect) {
@@ -128,12 +128,15 @@ function RUMSpeedIndex(win) {
 
   // Get the time at which each external resource loaded
   var GetRectTimings = function() {
-    var timings = {};
+    var timings: {[url: string]: number} = {};
     var requests = win.performance.getEntriesByType("resource");
-    for (var i = 0; i < requests.length; i++)
-      timings[requests[i].name] = requests[i].responseEnd;
+    for (var i = 0; i < requests.length; i++) {
+        timings[requests[i].name] = requests[i].responseEnd;
+    }
     for (var j = 0; j < rects.length; j++) {
-      if (!('tm' in rects[j])) rects[j].tm = timings[rects[j].url] !== undefined ? timings[rects[j].url] : 0;
+      if (!('tm' in rects[j])) {
+          rects[j].tm = timings[rects[j].url] !== undefined ? timings[rects[j].url] : 0;
+      }
     }
   };
 
@@ -153,12 +156,16 @@ function RUMSpeedIndex(win) {
     // use the time of the last non-async script or css from the head.
     if (firstPaint === undefined || firstPaint < 0 || firstPaint > 120000) {
       firstPaint = win.performance.timing.responseStart - navStart;
-      var headURLs = {};
+      var headURLs: {[name: string]: boolean} = {};
       var headElements = doc.getElementsByTagName('head')[0].children;
       for (var i = 0; i < headElements.length; i++) {
         var el = headElements[i];
-        if (el.tagName == 'SCRIPT' && el.src && !el.async) headURLs[el.src] = true;
-        if (el.tagName == 'LINK' && el.rel == 'stylesheet' && el.href) headURLs[el.href] = true;
+        if (el.tagName == 'SCRIPT' && el.src && !el.async) {
+          headURLs[el.src] = true;
+        }
+        if (el.tagName == 'LINK' && el.rel == 'stylesheet' && el.href) {
+          headURLs[el.href] = true;
+        }
       }
       var requests = win.performance.getEntriesByType("resource");
       var doneCritical = false;
@@ -177,7 +184,7 @@ function RUMSpeedIndex(win) {
   // Sort and group all of the paint rects by time and use them to
   // calculate the visual progress
   var CalculateVisualProgress = function() {
-    var paints = {
+    var paints: {[index: string]: number} = {
       '0': 0
     };
     var total = 0;
@@ -238,10 +245,10 @@ function RUMSpeedIndex(win) {
   /****************************************************************************
    Main flow
    ****************************************************************************/
-  var rects = [];
-  var progress = [];
-  var firstPaint;
-  var SpeedIndex;
+  var rects: any[] = [];
+  var progress: any[] = [];
+  var firstPaint: number;
+  var SpeedIndex: number;
   var pageBackgroundWeight = 0.1;
   try {
     var navStart = win.performance.timing.navigationStart;

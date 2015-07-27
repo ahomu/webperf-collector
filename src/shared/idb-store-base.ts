@@ -15,7 +15,7 @@ export default class IDBStoreBase<T> {
     this.store.put(dataObj, (id)=> {
       subject.onNext(id);
       subject.onCompleted();
-    }, (error) => {
+    }, (error: any) => {
       subject.onError(error);
       subject.onCompleted();
     });

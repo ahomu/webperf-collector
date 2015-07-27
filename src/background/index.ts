@@ -6,7 +6,7 @@ import * as Rx from 'rx';
 import {OBSERVABLE_TYPE} from '../constants';
 import {TrackingBundle, WebPageContext, ChromeLoadTimes, NavigationTiming} from '../interfaces';
 
-function duration(from, to) {
+function duration(from: number, to: number) {
   // if high resolution time
   from % 1 !== 0 && (from = Math.round(from * 1000));
   to % 1   !== 0 && (to = Math.round(to * 1000));

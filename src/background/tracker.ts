@@ -52,7 +52,7 @@ export default class Tracker {
         subject.onNext(data);
         subject.onCompleted();
       },
-      error: function(data: T, error) {
+      error: function(data: T, error: any) {
         subject.onError(error);
         subject.onCompleted();
       }
