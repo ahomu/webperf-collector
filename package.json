@@ -7,26 +7,26 @@
     "chartist": "^0.9.1",
     "idb-wrapper": "^1.5.0",
     "object-assign": "^2.0.0",
-    "rx-lite": "^2.5.2"
+    "rx": "^4.0.0"
   },
   "devDependencies": {
     "browserify": "^9.0.8",
     "convert-source-map": "^1.1.0",
     "dtsm": "^0.9.2",
     "glob": "^5.0.5",
-    "typescript": "^1.5.3",
+    "typescript": "^1.6.2",
     "watch": "^0.16.0",
     "watchify": "^3.2.1"
   },
   "license": "MIT",
   "scripts": {
     "build": "npm run tsc && npm run bundle:background && npm run bundle:browser_action && npm run bundle:content_scripts",
-    "tsc": "tsc src/**/*.ts src/*.ts --outDir build --module commonjs --sourceMap --noImplicitAny && node ./source-map-inliner.js",
+    "tsc": "tsc src/**/*.ts src/*.ts --outDir build --module commonjs --inlineSourceMap --noImplicitAny",
     "bundle:background": "browserify build/background/index.js -o extension/js/background.js",
     "bundle:browser_action": "browserify build/browser_action/index.js -o extension/js/browser_action.js",
     "bundle:content_scripts": "browserify build/content_scripts/index.js -o extension/js/content_scripts.js",
     "watch": "npm run watch:tsc & npm run watch:background & npm run watch:browser_action & npm run watch:content_scripts",
-    "watch:tsc": "watch 'npm run tsc' ./src --wait=1",
+    "watch:tsc": "npm run tsc -- --watch",
     "watch:background": "watchify build/background/index.js -dv -o extension/js/background.js",
     "watch:browser_action": "watchify build/browser_action/index.js -dv -o extension/js/browser_action.js",
     "watch:content_scripts": "watchify build/content_scripts/index.js -dv -o extension/js/content_scripts.js",

@@ -1,6 +1,3 @@
-///<reference path="../../typings/parse/parse.d.ts" />
-///<reference path="../common.d.ts" />
-
 import { INDEXEDDB_CONFIG } from '../constants';
 import { WebPageContext, TrackingBundle } from '../interfaces';
 import RecordStore from '../shared/idb-record';

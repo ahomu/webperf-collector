@@ -1,5 +1,5 @@
 import IDBStoreBase from './idb-store-base';
-import {WebPageContext, NavigationTiming, ChromeLoadTimes} from '../interfaces';
+import { WebPageContext, NavigationTiming, ChromeLoadTimes } from '../interfaces';
 
 interface ItemSchema extends WebPageContext {
   _id              : string;
@@ -8,12 +8,12 @@ interface ItemSchema extends WebPageContext {
 }
 
 export default class RecordStore extends IDBStoreBase<ItemSchema> {
-  dbVersion = 1;
+  dbVersion = 2;
   storeName = 'WebPerfCollector';
   keyPath   = '_id';
   indexes   = [
     {
-      name       : 'orign',
+      name       : 'origin',
       keyPath    : 'origin',
       unique     : false,
       multiEntry : false

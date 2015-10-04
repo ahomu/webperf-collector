@@ -1,9 +1,7 @@
-///<reference path="../../typings/chrome/chrome.d.ts" />
-
 import IPC from '../shared/ipc';
 import validity from './validity';
 import RUMSpeedIndex from './rum-speedindex';
-import {OBSERVABLE_TYPE} from '../constants';
+import {MESSAGE_TYPE} from '../constants';
 import {TrackingBundle, NavigationTiming, ChromeLoadTimes, WebPageContext} from '../interfaces';
 
 if (validity()) {
@@ -39,7 +37,7 @@ function tracking() {
     resourceCount  : performance.getEntries().length,
     speedIndex     : RUMSpeedIndex(global),
     connectionType : navigator.connection ? navigator.connection.type : 'unknown',
-    origin         : `${location.protocol}//${location.host}`,
+    origin         : location.origin,
     href           : location.href,
     timestamp      : performance.timing.navigationStart
   };
@@ -50,5 +48,5 @@ function tracking() {
     navigationTiming : navTiming,
     chromeLoadTimes  : loadTimes
   };
-  IPC.broadcast(OBSERVABLE_TYPE.TRACKING, trackingBundle);
+  IPC.broadcast(MESSAGE_TYPE.TRACKING, trackingBundle);
 }

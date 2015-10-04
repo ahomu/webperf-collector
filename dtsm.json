@@ -13,9 +13,6 @@
     },
     "rx/rx-lite.d.ts": {
       "ref": "f6c8ca47193fb67947944a3170912672ac3e908e"
-    },
-    "parse/parse.d.ts": {
-      "ref": "f6c8ca47193fb67947944a3170912672ac3e908e"
     }
   },
   "link": {

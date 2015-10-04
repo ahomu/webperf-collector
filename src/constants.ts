@@ -5,11 +5,9 @@ export enum NAVIGATION_TYPE {
   UNDEFINED    = 99
 }
 
-export enum OBSERVABLE_TYPE {
-  TRACKING          = 0,
-  NAVIGATION_TIMING = 1,
-  CHROME_LOAD_TIMES = 2,
-  WEB_PAGE_CONTEXT  = 3
+export enum MESSAGE_TYPE {
+  TRACKING     = 0,
+  STAT_REQUEST = 1
 }
 
 export const INDEXEDDB_CONFIG = {

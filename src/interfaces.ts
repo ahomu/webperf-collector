@@ -1,4 +1,9 @@
-import {NAVIGATION_TYPE} from './constants';
+import { NAVIGATION_TYPE } from './constants';
+
+export interface StatRequestBundle {
+  origin : string;
+  href   : string;
+}
 
 export interface TrackingBundle {
   context          : WebPageContext;

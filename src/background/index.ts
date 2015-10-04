@@ -1,10 +1,8 @@
-///<reference path="../../typings/chrome/chrome.d.ts" />
-
 import IPC from '../shared/ipc';
 import Tracker from './tracker';
 import * as Rx from 'rx';
-import {OBSERVABLE_TYPE} from '../constants';
-import {TrackingBundle, WebPageContext, ChromeLoadTimes, NavigationTiming} from '../interfaces';
+import { MESSAGE_TYPE } from '../constants';
+import { TrackingBundle, StatRequestBundle } from '../interfaces';
 
 function duration(from: number, to: number) {
   // if high resolution time
@@ -14,8 +12,12 @@ function duration(from: number, to: number) {
   return from - to;
 }
 
-const tracking: IPC<TrackingBundle> =
-  new IPC<TrackingBundle>(OBSERVABLE_TYPE.TRACKING, chrome.runtime.onMessage);
+const tracking = new IPC<TrackingBundle>(MESSAGE_TYPE.TRACKING, chrome.runtime.onMessage);
+const statRequest = new IPC<StatRequestBundle>(MESSAGE_TYPE.STAT_REQUEST, chrome.runtime.onMessage);
+
+statRequest.observable$.subscribe(function(data: StatRequestBundle) {
+  console.log(data);
+});
 
 tracking.observable$.subscribe(function(data: TrackingBundle) {
 

@@ -1,5 +1,3 @@
-///<reference path="../common.d.ts" />
-
 import * as IDBWrapper from 'idb-wrapper';
 import * as Rx from 'rx';
 
